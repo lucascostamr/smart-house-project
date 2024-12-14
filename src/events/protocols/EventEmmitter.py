@@ -1,3 +1,3 @@
 class EventEmmitter:
-    def emmit(self) -> None:
+    def emmit(self,data, topic) -> None:
         pass

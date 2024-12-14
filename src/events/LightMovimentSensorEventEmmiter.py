@@ -2,9 +2,9 @@ from infra.mqtt.MqttManager import MqttManager
 from .protocols.EventEmmitter import EventEmmitter
 
 class LightMovimentSensorEventEmmitter(EventEmmitter):
-    def __init__(self, topic:str):
-        self.mqtt_manager = MqttManager(topic)
+    def __init__(self):
+        self.mqtt_manager = MqttManager()
 
-    def emmit(self, message: str) -> None:
-        self.mqtt_manager.publish(message)
+    def emmit(self, topic:str, message: str) -> None:
+        self.mqtt_manager.publish(topic=topic, message=message)
         print("Event emmited")

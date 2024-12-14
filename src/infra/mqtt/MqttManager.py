@@ -3,10 +3,9 @@ from typing import Callable
 import paho.mqtt.client as mqtt
 
 class  MqttManager:
-    def __init__(self, topic: str):
+    def __init__(self):
         self.broker = "mqtt"
         self.port = 1883
-        self.topic = topic
         self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
         self.client.connect(self.broker, self.port)
 
@@ -19,9 +18,11 @@ class  MqttManager:
     def setOnMessageHandler(self, onMessageHandler: Callable):
         self.client.on_message = onMessageHandler
 
-    def publish(self, message: str):
-        self.client.publish(self.topic, message)
+    def publish(self, message: str, topic: str):
+        self.client.publish(topic, message)
 
-    def listen(self):
-        self.client.subscribe(self.topic)
-        self.client.loop_forever()
+    def subscribe(self, topic: str):
+        self.client.subscribe(topic)
+
+    def loop_start(self):
+        self.client.loop_start()

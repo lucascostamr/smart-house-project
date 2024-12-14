@@ -1,6 +1,6 @@
 from asyncio import run, sleep
 
-from protocols.SensorService import SensorService
+from .protocols.SensorService import SensorService
 from sensors.protocols.Sensor import Sensor
 from events.protocols.EventEmmitter import EventEmmitter
 
@@ -9,7 +9,7 @@ class LightMovimentSensorService(SensorService):
         self.sensor: Sensor = sensor
         self.event_emmiter: EventEmmitter = event_emmiter
 
-    async def fetch(self) -> None:
+    async def fetchAndEmmit(self, topic:str) -> None:
         print("\nLight sensor started")
 
         # Start Sensor collect
@@ -17,5 +17,5 @@ class LightMovimentSensorService(SensorService):
 
         while self.sensor.alive:
             data = self.sensor.get_data()
-            self.event_emmiter.emmit(message=data)
+            self.event_emmiter.emmit(message=data, topic=topic)
             await sleep(1)
