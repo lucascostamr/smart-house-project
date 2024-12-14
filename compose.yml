@@ -9,3 +9,6 @@ services:
       - .env.local
     command: bash
     tty: true
+
+  mqtt:
+    image: toke/mosquitto

@@ -6,10 +6,8 @@ class  MqttManager:
     def __init__(self, topic: str):
         self.broker = "mqtt"
         self.port = 1883
-        self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
         self.topic = topic
-
-    def connect(self) -> None:
+        self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
         self.client.connect(self.broker, self.port)
 
     def setPublishHandler(self, publishHandler: Callable):

@@ -1,6 +1,3 @@
 class SensorService:
-    def start(self) -> None:
-        pass
-    
-    def stop(self) -> None:
+    def fetch(self) -> None:
         pass
